@@ -1,0 +1,11 @@
+﻿@using Connect4.Models
+<div class="space">
+    @if (Piece.HasValue)
+    {
+        <div class="piece-@Piece.Value.ToString().ToLower()"></div>
+    }
+</div>
+@code {
+    [Parameter]
+    public PieceEnum? Piece { get; set; }
+}

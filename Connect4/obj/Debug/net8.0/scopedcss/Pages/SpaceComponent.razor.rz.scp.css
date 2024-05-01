@@ -1,0 +1,19 @@
+.space[b-8eet30nyfb] {
+    width: 150px;
+    height: 100px;
+    background-color: blue;
+    border: 1px white solid;
+    padding: 15px 40px;
+}
+.piece-orange[b-8eet30nyfb] {
+    background-color:orange;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+}
+.piece-green[b-8eet30nyfb] {
+    background-color: green;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+}

@@ -1,0 +1,19 @@
+﻿.space {
+    width: 150px;
+    height: 100px;
+    background-color: blue;
+    border: 1px white solid;
+    padding: 15px 40px;
+}
+.piece-orange {
+    background-color:orange;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+}
+.piece-green {
+    background-color: green;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+}

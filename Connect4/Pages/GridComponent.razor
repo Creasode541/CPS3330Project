@@ -1,0 +1,67 @@
+﻿@using Connect4.Models
+@page "/"
+@if (Grid != null) {
+<div class="layout">
+    <div class="message">
+        <strong>Orange @Grid.Orange-@Grid.Green Green</strong><br />
+        @if (Grid?.Winner.HasValue ?? false)
+        {
+            @(Grid.Winner.Value  + " has won the game")
+        }
+        <button @onclick="@(e => ResetGame(e))">Reset game</button>
+        @if (!(Grid?.Winner.HasValue ?? false)) {
+            <text>@Grid.NextTurn's turn is next.</text>
+        }
+        </div>
+    <div class="grid">
+
+            @for (var col = Grid.Pieces.GetLowerBound(0); col <= Grid.Pieces.GetUpperBound(0); col++)
+            {
+                var c = col;
+                <div class="column" @onclick="@(e => ColumnClick(e, c))">
+                    @for (var row = Grid.Pieces.GetUpperBound(1); row >= Grid.Pieces.GetLowerBound(0); row--)
+                    {
+                        <SpaceComponent Piece="@Grid.Pieces[col, row]"></SpaceComponent>
+                    }
+                </div>
+            }
+        
+    </div>
+</div>
+}
+@code {
+
+    public Grid Grid { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        Grid = new Grid();
+
+        return base.OnInitializedAsync();
+    }
+
+    public void ColumnClick(MouseEventArgs eventArgs, int col)
+    {
+        if (Grid.Winner.HasValue)
+        {
+            return;
+        }
+
+        for (var row = Grid.Pieces.GetLowerBound(1); row <= Grid.Pieces.GetUpperBound(1); row++)
+        {
+            if (!Grid.Pieces[col, row].HasValue)
+            {
+                Grid.Pieces[col, row] = Grid.NextTurn;
+
+                Grid.SetNextTurn();
+                break;
+            }
+        }
+    }
+
+    public void ResetGame(MouseEventArgs mouseEventArgs)
+    {
+        Grid.ResetGame();
+    }
+
+}
